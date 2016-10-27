@@ -19,6 +19,7 @@ public class DatabaseAdapter {
     }
 
     public long insertdata(String stockname, int noofstocks,float costrate,int stocksbought, float costprice, float sellrate, int stockssold,  float sellprice,float payoff){
+
         SQLiteDatabase db = dbh.getWritableDatabase();
         ContentValues contentvalues = new ContentValues();
         contentvalues.put(Dbh.COLUMN_STOCKNAME,stockname);
@@ -43,11 +44,13 @@ public class DatabaseAdapter {
         String[] columns = {Dbh.COLUMN_ID,Dbh.COLUMN_STOCKNAME,Dbh.COLUMN_NO_OF_STOCK,Dbh.COLUMN_COSTRATE,Dbh.COLUMN_STOCKBOUGHT,Dbh.COLUMN_COSTPRICE,Dbh.COLUMN_SELLRATE,Dbh.COLUMN_STOCKSOLD,Dbh.COLUMN_SELLPRICE,Dbh.COLUMN_PAYOFF};
         Cursor cursor = db.query(Dbh.TABLE_STOCK, columns, null, null, null, null, null);
 
-        if(cursor != null){
+        if(cursor != null)
+        {
             cursor.moveToFirst();
         }
         return cursor;
     }
+
     public String retcolstockname(){
         return Dbh.COLUMN_STOCKNAME;
     }
@@ -55,10 +58,12 @@ public class DatabaseAdapter {
    //  that part was unnecessary
 
     public String[] setvalue(String data){
+
         SQLiteDatabase db = dbh.getWritableDatabase();
         String[] args = new String[]{"","","","","","","","",""};
         String[] columns = {Dbh.COLUMN_ID,Dbh.COLUMN_STOCKNAME,Dbh.COLUMN_NO_OF_STOCK,Dbh.COLUMN_COSTRATE,Dbh.COLUMN_STOCKBOUGHT,Dbh.COLUMN_COSTPRICE,Dbh.COLUMN_SELLRATE,Dbh.COLUMN_STOCKSOLD,Dbh.COLUMN_SELLPRICE,Dbh.COLUMN_PAYOFF};
         Cursor cursor = db.query(Dbh.TABLE_STOCK, columns, Dbh.COLUMN_ID + " = '" + data + "'", null, null, null, null);
+
         while(cursor.moveToNext()) {
 
             int index0 = cursor.getColumnIndex(Dbh.COLUMN_STOCKNAME);
@@ -91,7 +96,6 @@ public class DatabaseAdapter {
             args[7] = sellprice;
             args[8] = payoff;
 
-
         }
         return args;
 
@@ -107,6 +111,7 @@ public class DatabaseAdapter {
 
 
     static class Dbh  extends SQLiteOpenHelper {
+
         private static final int DATABASE_VERSION = 5;//update database version number whenever update database
         private static final String DATABASE_NAME = "stock.db"; //name of database
         private static final String TABLE_STOCK ="stock";//name of table
@@ -132,10 +137,12 @@ public class DatabaseAdapter {
                 COLUMN_STOCKSOLD + " INTEGER, " +
                 COLUMN_SELLPRICE +  " REAL, " +
                 COLUMN_PAYOFF + " REAL);";
+
         private Context context;
         private static final String DROP_TABLE = "DROP TABLE IF EXISTS "+ TABLE_STOCK;
 
         public Dbh(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+          
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             this.context = context;
         }
@@ -162,5 +169,3 @@ public class DatabaseAdapter {
         }
     }
 }
-
-

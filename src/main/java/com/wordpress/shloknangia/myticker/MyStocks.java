@@ -16,7 +16,9 @@ public class MyStocks extends AppCompatActivity {
     DatabaseAdapter databaseadapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_my_stocks);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -24,6 +26,7 @@ public class MyStocks extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +49,7 @@ public class MyStocks extends AppCompatActivity {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                      
                         String data = String.valueOf(adapterView.getItemIdAtPosition(i));
                         Intent intent = new Intent(MyStocks.this, Details.class);
                         String[] args = databaseadapter.setvalue(data);

@@ -37,10 +37,12 @@ public class StockRetriveTask extends AsyncTask<String, Void, String>  {
     }
 
     private String connectionToString(InputStream is) throws IOException {
+
         StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
         String buffer = br.readLine();
+        
         while (buffer != null) {
             sb.append(buffer);
             buffer = br.readLine();

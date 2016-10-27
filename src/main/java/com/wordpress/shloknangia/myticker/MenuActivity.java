@@ -12,12 +12,14 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,10 +30,12 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void check_price(View view){
+
         Intent m = new Intent(MenuActivity.this, MainActivity.class);
         startActivity(m);
     }
     public void check_mystocks(View view){
+      
         Intent h = new Intent(MenuActivity.this, MyStocks.class);
         startActivity(h);
     }

@@ -21,7 +21,9 @@ public class ModifyOrSell extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_modify_or_sell);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -30,6 +32,7 @@ public class ModifyOrSell extends AppCompatActivity {
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,6 +40,7 @@ public class ModifyOrSell extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
         Bundle bundle = getIntent().getExtras();
         message = bundle.getString("stockname");
         message1 = bundle.getString("noofstocks");
@@ -102,7 +106,9 @@ public class ModifyOrSell extends AppCompatActivity {
         String s = txtView.getText().toString();
         databaseadapter.delrow(s);
         long id = databaseadapter.insertdata(message,Integer.parseInt(message1),Float.parseFloat(message2),Integer.parseInt(message3),Float.parseFloat(message4),Float.parseFloat(message5),Integer.parseInt(message6),Float.parseFloat(message7),Float.parseFloat(message8));
-        if (id<0){
+
+        if (id<0)
+        {
             Toast.makeText(this, "unsuccessfull", Toast.LENGTH_SHORT).show();
         }else
         {
@@ -117,7 +123,8 @@ public class ModifyOrSell extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if(id == android.R.id.home) {
+        if(id == android.R.id.home)
+        {
             this.finish();
             return true;
         }

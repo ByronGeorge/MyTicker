@@ -17,16 +17,15 @@ public class GoogleSearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_search);
 
         Intent intent = getIntent();
         String keyword = intent.getStringExtra("keyword");
-
         String url = SEARCH_URL + keyword;
 
         WebView webView = (WebView)findViewById(R.id.activity_google_search);
-
         WebSettings webSettings = webView.getSettings();
         webSettings.setPluginState(WebSettings.PluginState.ON);
         webSettings.setDomStorageEnabled(true);
@@ -37,10 +36,12 @@ public class GoogleSearchActivity extends AppCompatActivity {
         webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
-        if (Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= 19)
+        {
             webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
         }
-        else {
+        else
+        {
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
 
@@ -53,8 +54,8 @@ public class GoogleSearchActivity extends AppCompatActivity {
 class MyWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+      
         view.loadUrl(url);
         return true;
     }
 }
-

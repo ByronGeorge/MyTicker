@@ -17,19 +17,22 @@ public class AddStock extends AppCompatActivity {
     DatabaseAdapter databaseadapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_stock);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+
         name_of_stock= (EditText)findViewById(R.id.text_stock_name);
         cost_price=(EditText)findViewById(R.id.text_cost_price);
         noof_stock=(EditText)findViewById(R.id.text_noofstock);
@@ -45,6 +48,7 @@ public class AddStock extends AppCompatActivity {
     }
 
     public void calculate(View view){
+
         String r,q;
         float rate,totalprice;
         int quan;
@@ -57,6 +61,7 @@ public class AddStock extends AppCompatActivity {
 
     }
     public void confirm_add(View view){
+
         String stockname,s1,s2,s3;
         int numstock;
         float costprice,costrate;
@@ -70,7 +75,9 @@ public class AddStock extends AppCompatActivity {
         costprice = Float.parseFloat(s3);
 
         long id = databaseadapter.insertdata(stockname,numstock,costrate,numstock,costprice,0.0f,0,0.0f,0.0f);
-        if (id<0){
+
+        if (id<0)
+        {
             Toast.makeText(this, "unsuccessfull",Toast.LENGTH_SHORT).show();
         }else
         {
