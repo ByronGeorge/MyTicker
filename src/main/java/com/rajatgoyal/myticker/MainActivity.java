@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         bnRetrieve = (Button) findViewById(R.id.bn_retrieve);
-
         edSymbol = (EditText) findViewById(R.id.edit_symbol);
-
         edSymbol.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -78,18 +78,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void retrieveQuote(View vw) {
+
         String request = STOCK_URL + symbol;
 
-        if (checkInternet()) {
+        if (checkInternet())
+         {
             new StockRetrieveTask() {
                 @Override
                 protected void onPreExecute() {
+
                     Log.i(TAG, "onPreExecute");
                     super.onPreExecute();
                 }
 
                 @Override
                 protected void onPostExecute(String response) {
+
                     super.onPostExecute(response);
                     Log.d(TAG, response);
                     readJsonResponse(response);
@@ -101,23 +105,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean checkInternet() {
+
         ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo ni = cm.getActiveNetworkInfo();
-        if (ni != null && ni.isConnected()) {
+
+        if (ni != null && ni.isConnected())
+        {
             return true;
-        } else {
+
+        } else
+         {
             Toast.makeText(MainActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
 
     private void readJsonResponse(String response) {
+
         response = response.substring(2);
         ArrayList<String> termsList = new ArrayList<>();
         hmStockData = new HashMap<>();
+
         try {
+
             Toast.makeText(MainActivity.this,"Success !",Toast.LENGTH_SHORT).show();
             Log.d(TAG, "readJsonResponse: " + response);
+
             JSONArray jArr = new JSONArray(response);
             Log.d(TAG, "jArr to string : " + jArr.toString());
 
@@ -133,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "ticker: " + jObj.getString("t"));
                 Log.d(TAG, "exchange: " + jObj.getString("e"));
                 Log.d(TAG, "price: " + jObj.getString("l"));
-
             }
 
         } catch (JSONException e) {
@@ -164,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void googleSearch(View v) {
+      
         Intent i = new Intent(MainActivity.this, GoogleSearchActivity.class);
         i.putExtra("keyword",symbol);
         startActivity(i);

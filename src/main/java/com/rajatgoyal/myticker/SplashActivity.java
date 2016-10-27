@@ -14,6 +14,7 @@ import android.os.PersistableBundle;
 public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
@@ -21,6 +22,7 @@ public class SplashActivity extends Activity {
                 new Runnable() {
                     @Override
                     public void run() {
+                      
                         Intent i = new Intent(SplashActivity.this, MainActivity.class);
                         startActivity(i);
                     }
